@@ -1,0 +1,39 @@
+.background {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color);
+}
+
+.formContent {
+  width: 90%;
+  max-width: 620px;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  border-radius: var(--border-radius);
+  background-color: var(--background-color);
+  padding: var(--app-padding);
+  margin-top: calc(var(--app-padding) * 2);
+}
+
+.title {
+  font-size: var(--font-header);
+  font-weight: bold;
+  color: var(--background-color);
+}
+
+.submitButton {
+  margin-top: calc(var(--app-padding) * 2);
+  padding: 10px;
+  background-color: var(--secondary-color);
+  color: var(--background-color);
+  font-size: var(--font-title);
+  border: 0;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
