@@ -15,10 +15,14 @@ const Form = (props) => {
           { ({ field }) => (
             <div className={styles.radioGroup}>
               { props.options.map((option, index) => (
-                <div key={`${field.name}-${option.value}`} className={`${styles.radio} ${index > 0 && styles.radioMargin}`}>
+                <div
+                  data-testid={`radio-${option.value}`}
+                  key={`${field.name}-${option.value}`}
+                  className={`${styles.radio} ${index > 0 && styles.radioMargin}`}
+                  onClick={() => { field.onChange({ target: { name: field.name, value: option.value } }) }}
+                >
                   <div
                     className={`${styles.radioInput} ${field.value === option.value && styles.checked}`}
-                    onClick={() => { field.onChange({ target: { name: field.name, value: option.value } }) }}
                   />
                   <span className={styles.radioTitle}>{option.title}</span>
                 </div>

@@ -33,6 +33,7 @@
 
 .radio {
   display: flex;
+  cursor: pointer;
 }
 
 .radioMargin {
@@ -46,7 +47,6 @@
   border: 2px solid var(--primary-color);
   border-radius: var(--size);
   background-color: white;
-  cursor: pointer;
 }
 
 .checked {

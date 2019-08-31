@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Formik } from 'formik'
 import Form from 'components/Form'
+import userProvider from 'providers/user'
 
 import styles from './Register.module.css'
 
@@ -56,7 +57,7 @@ const initialValues = {
 
 class Register extends Component {
   onSubmit = (values) => {
-    this.onRegisterSuccess(values)
+    userProvider.register(values, this.onRegisterSuccess, this.onRegisterError)
   }
 
   onRegisterSuccess = (values) => {
@@ -86,7 +87,13 @@ class Register extends Component {
                   <Form  key={form.name} {...form} />
                 ))}
               </div>
-              <button className={styles.submitButton} onClick={handleSubmit}>Send</button>
+              <button
+                type="submit"
+                className={styles.submitButton}
+                onClick={handleSubmit}
+              >
+                Send
+              </button>
             </>
           )}
         </Formik>

@@ -15,3 +15,7 @@
 
 import './commands'
 
+beforeEach(() => {
+  cy.server({ force404: true })
+})
+

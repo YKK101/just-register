@@ -23,3 +23,7 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("mockRequest", (method, route, mockResponse = {}) => {
+  return cy.route(method, `${Cypress.env('apiUrl')}${route}`, mockResponse)
+})
