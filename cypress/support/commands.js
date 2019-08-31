@@ -27,3 +27,10 @@
 Cypress.Commands.add("mockRequest", (method, route, mockResponse = {}) => {
   return cy.route(method, `${Cypress.env('apiUrl')}${route}`, mockResponse)
 })
+
+Cypress.Commands.add("mockRequestWithOption", (route, option) => {
+  return cy.route({
+    ...option,
+    url: `${Cypress.env('apiUrl')}${route}`,
+  })
+})
