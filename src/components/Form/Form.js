@@ -1,15 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Field } from 'formik'
+import { Field, ErrorMessage } from 'formik'
 
 import styles from './Form.module.css'
 
 const Form = (props) => {
   return (
     <div className={styles.wrapper}>  
-      <span className={styles.title}>{props.title}</span>
+      <span className={styles.title}>{props.title}{props.isRequired && <span className={styles.required}> *</span>}</span>
       { props.type !== 'select' ? (
-        <Field className={styles.input} type={props.type} name={props.name} />
+        <>
+          <Field className={styles.input} type={props.type} name={props.name} />
+          <ErrorMessage data-testid={`err-${props.name}`} component="div" className={styles.error} name={props.name} />
+        </>
       ) : (
         <Field className={styles.radioGroup} name={props.name}>
           { ({ field }) => (

@@ -5,6 +5,61 @@ describe('Test register', () => {
     cy.visit('/register')
   })
 
+  describe('Validation', () => {  
+    describe('Required Field', () => {
+      afterEach(() => {
+        cy.get('[data-testid=err-firstName]')
+          .should('exist')
+          .and('contain', 'Required')
+        cy.get('[data-testid=err-lastName]')
+          .should('exist')
+          .and('contain', 'Required')
+        cy.get('[data-testid=err-dateOfBirth]')
+          .should('exist')
+          .and('contain', 'Required')
+        cy.get('[data-testid=err-tel]')
+          .should('not.exist')
+        cy.get('[data-testid=err-email]')
+          .should('not.exist')
+      })
+    
+      it('should show missing required field, on send without any input', () => {
+        cy.get('button[type=submit]')
+          .click()
+      })
+
+      it('should show missing required field, on insert nothing to them', () => {
+        cy.get('input[name=firstName]')
+          .focus()
+          .blur()
+        cy.get('input[name=lastName]')
+          .focus()
+          .blur()
+        cy.get('input[name=dateOfBirth]')
+          .focus()
+          .blur()
+        cy.get('input[name=tel]')
+          .focus()
+          .blur()
+        cy.get('input[name=email]')
+          .focus()
+          .blur()
+      })
+    })
+
+    describe('Email', () => {
+      it('should show invalid email', () => {
+        cy.get('input[name=email]')
+          .type('abc')
+          .blur()
+        
+        cy.get('[data-testid=err-email]')
+          .should('exist')
+          .and('contain', 'Invalid Email')
+      })
+    })
+  })
+
   describe('Success', () => {
     beforeEach(() => {
       cy.mockRequest('POST', '/register', 'fixture:users/withCompleteData/registerResponse.json')
